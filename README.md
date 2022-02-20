@@ -96,7 +96,7 @@ val docs = sc.textFile("docs")
 
 val counts = docs.flatMap(line => line.split(" ")).map(word => (word,1)).reduceByKey(_+_)
 
-val.collect()
+counts.collect()
 ```
 
 3. The result is as below:
