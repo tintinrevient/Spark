@@ -78,4 +78,25 @@ export PATH=$PATH:$SPARK_HOME/bin
 spark-shell
 ```
 
+## Word Count
+
+1. Prepare the local file `docs` as below:
+```bash
+Mary had a little lamb
+its fleece was white as snow
+and everywhere that Mary went
+the lamb was sure to go
+```
+
+2. Execute the following statements in the Spark shell:
+```scala
+val docs = sc.textFile("hdfs://localhost:9000/docs")
+val docs = sc.textFile("file:///home/shu/docs")
+
+val counts = docs.flatMap(line => line.split(" ")).map(word => (word,1)).reduceByKey(_+_)
+
+val.collect()
+```
+
 ## References
+* https://spark.apache.org/docs/latest/sql-data-sources-text.html
