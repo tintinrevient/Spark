@@ -67,10 +67,15 @@ tar -xvzf spark-3.2.1-bin-hadoop3.2.tgz
 sudo mv spark-3.2.1-bin-hadoop3.2 /usr/local/spark
 ```
 
-2. Update .bashrc:
+2. Update `.bashrc`:
 ```bash
 export SPARK_HOME=/usr/local/spark
 export PATH=$PATH:$SPARK_HOME/bin
+```
+
+3. Start the `Spark shell`:
+```bash
+spark-shell
 ```
 
 ## References
