@@ -90,11 +90,13 @@ the lamb was sure to go
 
 2. Execute the following statements in the Spark shell:
 ```scala
-val docs = sc.textFile("hdfs://localhost:9000/docs")
-val docs = sc.textFile("file:///home/shu/docs")
-val docs = sc.textFile("docs")
+scala> val docs = sc.textFile("hdfs://localhost:9000/docs")
+scala> val docs = sc.textFile("file:///home/shu/docs")
+scala> val docs = sc.textFile("docs")
+docs: org.apache.spark.rdd.RDD[String] = docs MapPartitionsRDD[1] at textFile
 
-val counts = docs.flatMap(line => line.split(" ")).map(word => (word,1)).reduceByKey(_+_)
+scala> val counts = docs.flatMap(line => line.split(" ")).map(word => (word,1)).reduceByKey(_+_)
+counts: org.apache.spark.rdd.RDD[(String, Int)] = ShuffledRDD[4] at reduceByKey
 
 counts.collect()
 ```
