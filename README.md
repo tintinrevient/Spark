@@ -59,5 +59,18 @@ Spark can run on top of the following cluster:
 
 ## Installation
 
+### Hadoop's YARN
+
+1. Download the Spark binary from [this link](https://spark.apache.org/downloads.html):
+```bash
+tar -xvzf spark-3.2.1-bin-hadoop3.2.tgz
+sudo mv spark-3.2.1-bin-hadoop3.2 /usr/local/spark
+```
+
+2. Update .bashrc:
+```bash
+export SPARK_HOME=/usr/local/spark
+export PATH=$PATH:$SPARK_HOME/bin
+```
 
 ## References
