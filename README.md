@@ -92,6 +92,7 @@ the lamb was sure to go
 ```scala
 val docs = sc.textFile("hdfs://localhost:9000/docs")
 val docs = sc.textFile("file:///home/shu/docs")
+val docs = sc.textFile("docs")
 
 val counts = docs.flatMap(line => line.split(" ")).map(word => (word,1)).reduceByKey(_+_)
 
