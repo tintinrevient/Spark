@@ -98,5 +98,10 @@ val counts = docs.flatMap(line => line.split(" ")).map(word => (word,1)).reduceB
 val.collect()
 ```
 
+3. The result is as below:
+```
+res0: Array[(String, Int)] = Array((went,1), (its,1), (fleece,1), (as,1), (everywhere,1), (go,1), (lamb,2), (little,1), (white,1), (was,2), (had,1), (a,1), (that,1), (to,1), (sure,1), (Mary,2), (and,1), (snow,1), (the,1))
+```
+
 ## References
 * https://spark.apache.org/docs/latest/sql-data-sources-text.html
