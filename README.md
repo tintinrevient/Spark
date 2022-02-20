@@ -42,7 +42,7 @@ val result = oomLines.count()
 Spark can run on top of the following cluster:
 * Hadoop's YARN;
 * Spark standalone cluster;
-* Apache `Mesos`, which is an advanced distributed systems kernel bringing distributed resource abstractions that can `scale to tens of thousands of nodes` with full fault tolerance.
+* Apache `Mesos`, which is an advanced distributed system's kernel bringing distributed resource abstractions that can `scale to tens of thousands of nodes` with full fault tolerance.
 
 ### Ecosystem
 
