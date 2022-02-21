@@ -60,7 +60,7 @@ Spark can run on top of the following cluster:
 
 ## Installation
 
-### Hadoop's YARN
+### Spark standalone cluster
 
 1. Download the Spark binary from [this link](https://spark.apache.org/downloads.html):
 ```bash
