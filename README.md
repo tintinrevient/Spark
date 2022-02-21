@@ -5,9 +5,10 @@
 ### Components
 
 `RDD` (Resilient Distributed Dataset) is the main element of the `Spark API`:
-* RDD allows you to work with a distributed collection the same way you would work with any `local`, non-distributed one;
+* RDD allows you to work with a `distributed` collection the same way you would work with any `local`, non-distributed one;
 * RDD provides an elaborate API, which allows you to work with a collection in a `functional` style;
-* RDD is resilient because it is capable of rebuilding datasets in case of `node failures`.
+* RDD is `resilient` because it is capable of rebuilding datasets in case of `node failures`;
+* RDD is `immutable` (read-only), data transformation always yields a new RDD instance.
 
 <p float="left">
    <img src="pix/components.png" width=700 />
