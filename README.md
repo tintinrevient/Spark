@@ -133,7 +133,7 @@ cat output/part-*.json
 ## Partition and Shuffle
 
 <p float="left">
-   <img src="pix/stages.png" width=750 />
+   <img src="pix/stages.png" width=800 />
 </p>
 
 * During `checkpointing`, the entire RDD is persisted to disk: `data` and `RDD dependencies`/`RDD lineage`;
