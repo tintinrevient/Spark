@@ -132,6 +132,10 @@ cat output/part-*.json
 
 ## Partition and Shuffle
 
+<p float="left">
+   <img src="pix/stages.png" width=700 />
+</p>
+
 * During `checkpointing`, the entire RDD is persisted to disk: `data` and `RDD dependencies`/`RDD lineage`;
 * `RDD dependencies` make RDDs resilient;
 * `checkpoint` must be called before any `jobs` are executed on the RDD, and the RDD has to be materialized afterward;
@@ -166,6 +170,10 @@ res118: String =
  +-(5) MapPartitionsRDD[184] at map at <console>:25 []
     |  ParallelCollectionRDD[182] at parallelize at <console>:26 []
 ```
+
+<p float="left">
+   <img src="pix/shuffle.png" width=700 />
+</p>
 
 * The transform function, passed to `aggregateByKey`, merges values in partitions;
 * The merge function merges values between partitions during the shuffle phase.
