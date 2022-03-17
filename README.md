@@ -159,7 +159,7 @@ scala> val reduced = pairs.reduceByKey((v1, v2) => v1+v2)
 reduced: org.apache.spark.rdd.RDD[(Int, Int)] = ShuffledRDD[185] at reduceByKey at <console>:25
 
 scala> reduced.collect
-res1: Array[(Int, Int)] = Array((0,0), (5,1025), (1,52), (6,1584), (7,2597), (2,204), (3,441), (8,3328), (4,832), (9,4455))
+res111: Array[(Int, Int)] = Array((0,0), (5,1300), (1,40), (6,1440), (7,2401), (2,260), (3,540), (8,3008), (4,768), (9,3969))
 
 scala> val finalrdd = reduced.mapPartitions(iter => iter.map({case(k, v) => "k="+k+" and v="+v}))
 scala> val finalrdd = reduced.map({case(k, v) => "k="+k+" and v="+v})
