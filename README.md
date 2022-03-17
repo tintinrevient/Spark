@@ -187,6 +187,12 @@ aggregated: org.apache.spark.rdd.RDD[(Int, Int)] = ShuffledRDD[195] at aggregate
 
 scala> aggregated.collect
 res131: Array[(Int, Int)] = Array((0,0), (5,1300), (1,40), (6,1440), (7,2401), (2,260), (3,540), (8,3008), (4,768), (9,3969))
+
+scala> aggregated.toDebugString
+res1: String =
+(5) ShuffledRDD[2] at aggregateByKey at <console>:25 []
+ +-(5) MapPartitionsRDD[1] at map at <console>:25 []
+    |  ParallelCollectionRDD[0] at parallelize at <console>:26 []
 ```
 
 ## References
