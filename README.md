@@ -130,6 +130,37 @@ cat output/part-*.json
 {"login":"EmanueleMinotto","count":22}
 ```
 
+## Partition and Shuffle
+
+```scala
+scala> val list = List.fill(500)(scala.util.Random.nextInt(10))
+list: List[Int] = List(1, 0, 0, 3, 8, 5, 7, 1, 3, 9, 0, 0, 4, 5, 3, 8, 6, 5, 4, 4, 5, 1, 2, 0, 1, 7, 3, 5, 4, 4, 5, 0, 3, 0, 0, 4, 4, 6, 8, 5, 2, 9, 9, 6, 0, 6, 2, 6, 0, 2, 5, 9, 7, 4, 8, 3, 2, 8, 2, 8, 8, 8, 3, 2, 6, 5, 5, 6, 7, 2, 6, 9, 8, 4, 4, 3, 7, 9, 2, 9, 9, 3, 3, 9, 9, 3, 9, 3, 4, 9, 9, 5, 4, 4, 7, 2, 7, 6, 5, 2, 8, 5, 6, 7, 9, 0, 2, 3, 0, 1, 7, 4, 6, 9, 6, 2, 8, 2, 1, 5, 3, 1, 2, 4, 8, 3, 9, 8, 2, 3, 4, 8, 2, 2, 9, 4, 2, 4, 2, 9, 9, 1, 0, 5, 3, 7, 3, 9, 6, 2, 4, 3, 5, 0, 0, 3, 8, 2, 2, 6, 6, 4, 3, 1, 2, 8, 3, 0, 1, 7, 2, 4, 5, 1, 6, 2, 5, 2, 9, 9, 0, 0, 9, 7, 1, 0, 8, 4, 9, 1, 6, 3, 3, 5, 7, 8, 1, 9, 2, 3, 9, 1, 5, 1, 2, 8, 7, 8, 2, 2, 0, 0, 3, 7, 9, 9, 7, 3, 0, 5, 5, 1, 3, 9, 0, 0, 2, 5, 7, 1, 7, 0, 8, 0, 7, 3, 0, 8, 8, 1, 5, 0, 9, 9, 0, 6, 6, 4, 4, 6...
+
+scala> val listrdd = = sc.parallelize(list, 5)
+listrdd: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[182] at parallelize at <console>:26
+
+scala> listrdd.partitions.size
+res107: Int = 5
+
+scala> val pairs = listrdd.map(x => (x, x*x))
+pairs: org.apache.spark.rdd.RDD[(Int, Int)] = MapPartitionsRDD[184] at map at <console>:25
+
+scala> val reduced = pairs.reduceByKey((v1, v2) => v1+v2)
+reduced: org.apache.spark.rdd.RDD[(Int, Int)] = ShuffledRDD[185] at reduceByKey at <console>:25
+
+scala> val finalrdd = reduced.mapPartitions(iter => iter.map({case(k, v) => "k="+k+" and v="+v}))
+scala> val finalrdd = reduced.map({case(k, v) => "k="+k+" and v="+v})
+scala> finalrdd.collect
+res123: Array[String] = Array(k=0 and v=0, k=5 and v=1300, k=1 and v=40, k=6 and v=1440, k=7 and v=2401, k=2 and v=260, k=3 and v=540, k=8 and v=3008, k=4 and v=768, k=9 and v=3969)
+
+scala> finalrdd.toDebugString
+res118: String =
+(5) MapPartitionsRDD[186] at mapPartitions at <console>:25 []
+ |  ShuffledRDD[185] at reduceByKey at <console>:25 []
+ +-(5) MapPartitionsRDD[184] at map at <console>:25 []
+    |  ParallelCollectionRDD[182] at parallelize at <console>:26 []
+```
+
 ## References
 * https://spark.apache.org/docs/latest/sql-data-sources-text.html
 * https://spark.apache.org/docs/latest/
