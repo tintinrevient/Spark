@@ -167,6 +167,17 @@ res118: String =
     |  ParallelCollectionRDD[182] at parallelize at <console>:26 []
 ```
 
+* The transform function, passed to `aggregateByKey`, merges values in partitions;
+* The merge function merges values between partitions during the shuffle phase.
+
+```scala
+scala> val aggregated = pairs.aggregateByKey(0)((vp1, vp2) => vp1+vp2, (v1, v2)=>v1+v2)
+aggregated: org.apache.spark.rdd.RDD[(Int, Int)] = ShuffledRDD[195] at aggregateByKey at <console>:25
+
+scala> aggregated.collect
+res131: Array[(Int, Int)] = Array((0,0), (5,1300), (1,40), (6,1440), (7,2401), (2,260), (3,540), (8,3008), (4,768), (9,3969))
+```
+
 ## References
 * https://spark.apache.org/docs/latest/sql-data-sources-text.html
 * https://spark.apache.org/docs/latest/
