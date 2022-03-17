@@ -133,7 +133,7 @@ cat output/part-*.json
 ## Partition and Shuffle
 
 <p float="left">
-   <img src="pix/stages.png" width=700 />
+   <img src="pix/stages.png" width=750 />
 </p>
 
 * During `checkpointing`, the entire RDD is persisted to disk: `data` and `RDD dependencies`/`RDD lineage`;
@@ -175,7 +175,7 @@ res118: String =
 ```
 
 <p float="left">
-   <img src="pix/shuffle.png" width=700 />
+   <img src="pix/shuffle.png" width=650 />
 </p>
 
 * The transform function, passed to `aggregateByKey`, merges values in partitions;
