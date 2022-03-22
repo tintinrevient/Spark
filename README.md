@@ -202,7 +202,8 @@ res1: String =
 </p>
 
 * A permanent `table catalog` (surviving Spark context restarts) is available only when Spark is built with `Hive` support;
-* `HiveQL` is capable of running its jobs not only as `MapReduce` jobs, but also as `Spark` jobs.
+* `HiveQL` is capable of running its jobs not only as `MapReduce` jobs, but also as `Spark` jobs;
+* It is often necessary to first load data into an `RDD` and then use it to create a `DataFrame`.
 
 ## References
 * https://spark.apache.org/docs/latest/sql-data-sources-text.html
