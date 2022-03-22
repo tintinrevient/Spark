@@ -130,7 +130,7 @@ cat output/part-*.json
 {"login":"EmanueleMinotto","count":22}
 ```
 
-## Partition and Shuffle
+## Partition + Shuffle
 
 <p float="left">
    <img src="pix/stages.png" width=800 />
@@ -194,6 +194,12 @@ res1: String =
  +-(5) MapPartitionsRDD[1] at map at <console>:25 []
     |  ParallelCollectionRDD[0] at parallelize at <console>:26 []
 ```
+
+## Dataframe
+
+<p float="left">
+   <img src="pix/dataframe.png" width=650 />
+</p>
 
 ## References
 * https://spark.apache.org/docs/latest/sql-data-sources-text.html
