@@ -201,6 +201,9 @@ res1: String =
    <img src="pix/dataframe.png" width=650 />
 </p>
 
+* A permanent `table catalog` (surviving Spark context restarts) is available only when Spark is built with `Hive` support;
+* `HiveQL` is capable of running its jobs not only as `MapReduce` jobs, but also as `Spark` jobs.
+
 ## References
 * https://spark.apache.org/docs/latest/sql-data-sources-text.html
 * https://spark.apache.org/docs/latest/
