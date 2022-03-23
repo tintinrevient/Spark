@@ -205,6 +205,42 @@ res1: String =
 * `HiveQL` is capable of running its jobs not only as `MapReduce` jobs, but also as `Spark` jobs;
 * It is often necessary to first load data into an `RDD` and then use it to create a `DataFrame`.
 
+```
+$ pyspark
+
+>>> data = [["test_data_1", 1], ["test_data_2", 2]]
+>>> df = spark.createDataFrame(data)
+>>> df.printSchema()
+root
+ |-- _1: string (nullable = true)
+ |-- _2: long (nullable = true)
+
+>>> columns = ["name", "id"]
+>>> import pandas as pd
+>>> pandas_df = pd.DataFrame(data, columns=columns)
+>>> df = spark.createDataFrame(pandas_df)
+>>> df.printSchema()
+root
+ |-- name: string (nullable = true)
+ |-- id: long (nullable = true)
+ 
+ >>> from pyspark.sql.types import StructType, StructField, StringType, IntegerType
+ >>> schema = StructType([StructField("name", StringType(), True), StructField("id", IntegerType(), False)])
+ >>> df = spark.createDataFrame(data, schema)
+ >>> df.printSchema()
+ root
+ |-- name: string (nullable = true)
+ |-- id: integer (nullable = false)
+ 
+ >>> df.show()
++-----------+---+
+|       name| id|
++-----------+---+
+|test_data_1|  1|
+|test_data_2|  2|
++-----------+---+
+```
+
 ## References
 * https://spark.apache.org/docs/latest/sql-data-sources-text.html
 * https://spark.apache.org/docs/latest/
