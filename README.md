@@ -226,7 +226,7 @@ root
  
  >>> from pyspark.sql.types import StructType, StructField, StringType, IntegerType
  >>> schema = StructType([StructField("name", StringType(), True), StructField("id", IntegerType(), False)])
- >>> df = spark.createDataFrame(data, schema)
+ >>> df = spark.createDataFrame(data, schema) # Another option: df = data.toDF(schema)
  >>> df.printSchema()
  root
  |-- name: string (nullable = true)
