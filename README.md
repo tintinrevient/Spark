@@ -239,6 +239,26 @@ root
 |test_data_1|  1|
 |test_data_2|  2|
 +-----------+---+
+
+>>> df.createOrReplaceTempView("df_temp_view") # It is a temporary table in the session memory
+>>> spark.catalog.listTables()
+[Table(name='df_temp_view', database=None, description=None, tableType='TEMPORARY', isTemporary=True)]
+
+>>> df.write.saveAsTable("df_table") # It will be persisted in ./spark-warehouse/df_table in the default format parquet
+>>> spark.catalog.listTables()
+[Table(name='df_table', database='default', description=None, tableType='MANAGED', isTemporary=False), 
+ Table(name='df_temp_view', database=None, description=None, tableType='TEMPORARY', isTemporary=True)]
+ 
+>>> spark.sql("select * from df_temp_view").show()
+>>> spark.table("df_temp_view").show()
+>>> spark.sql("select * from df_table").show()
+>>> spark.table("df_table").show()
++-----------+---+
+|       name| id|
++-----------+---+
+|test_data_1|  1|
+|test_data_2|  2|
++-----------+---+
 ```
 
 ## References
