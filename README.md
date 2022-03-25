@@ -261,6 +261,11 @@ root
 +-----------+---+
 ```
 
+## Streaming
+
 ## References
 * https://spark.apache.org/docs/latest/sql-data-sources-text.html
 * https://spark.apache.org/docs/latest/
+* https://spark.apache.org/docs/latest/rdd-programming-guide.html
+* https://spark.apache.org/docs/latest/streaming-programming-guide.html
+* https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html
