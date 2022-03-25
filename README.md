@@ -319,13 +319,15 @@ $ netcat -lp 9999
 ## Stateful streams
 
 ```
+>>> ssc.checkpoint("checkpoint") # Stateful transformations are allowed only after setting ./checkpoint folder
+
 def updateFunction(newValues, runningCount):
     if runningCount is None:
         runningCount = 0
     return sum(newValues, runningCount)
     
-results = ss.flatMap(lambda x: x.split(" ")).map(lambda x: (x, 1)).updateStateByKey(updateFunction)
-results.pprint()
+>>> results = ss.flatMap(lambda x: x.split(" ")).map(lambda x: (x, 1)).updateStateByKey(updateFunction)
+>>> results.pprint()
 ```
 
 ## References
