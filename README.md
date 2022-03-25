@@ -263,6 +263,43 @@ root
 
 ## Streaming
 
+<p float="left">
+   <img src="pix/streaming.png" width=650 />
+</p>
+
+* a `DStream` is represented as a sequence of RDDs;
+
+```
+$ pyspark
+
+>>> from pyspark.streaming import StreamingContext
+>>> ssc = StreamingContext(sc, 5) # 5 seconds
+>>> fs = ssc.textFileStream("input") # Listen on new files in ./input folder
+
+>>> results = fs.flatMap(lambda x: x.split(" ")).map(lambda x: (x, 1)).window(60).reduceByKey(lambda x, y: x + y).repartition(1).glom().map(lambda arr: ("COUNT", list(arr)))
+>>> results.saveAsTextFiles("output") # Save the results in ./output folder
+
+>>> ssc.start()
+>>> ssc.stop(False) # False means not to terminate sc while stopping ssc
+```
+
+To add random words to text files in `input` folder:
+```bash
+$ echo "Mary had a little lamb" > input/file1.txt
+$ echo "its fleece was white as snow" > input/file2.txt
+$ echo "and everywhere that Mary went" > input/file3.txt
+$ echo "the lamb was sure to go" > input/file4.txt
+
+$ ls input
+file1.txt	file2.txt	file3.txt   file4.txt
+```
+
+To check the results in `output` folder:
+```bash
+$ cat output-1648244990000/part-00000
+('COUNT', [('was', 2), ('lamb', 2), ('everywhere', 1), ('go', 1), ('fleece', 1), ('snow', 1), ('a', 1), ('little', 1), ('and', 1), ('that', 1), ('went', 1), ('the', 1), ('to', 1), ('as', 1), ('Mary', 2), ('sure', 1), ('its', 1), ('white', 1), ('had', 1)])
+```
+
 ## References
 * https://spark.apache.org/docs/latest/sql-data-sources-text.html
 * https://spark.apache.org/docs/latest/
