@@ -269,6 +269,8 @@ root
 
 * a `DStream` is represented as a sequence of RDDs;
 
+### File streams
+
 ```
 $ pyspark
 
@@ -298,6 +300,20 @@ To check the results in `output` folder:
 ```bash
 $ cat output-1648244990000/part-00000
 ('COUNT', [('was', 2), ('lamb', 2), ('everywhere', 1), ('go', 1), ('fleece', 1), ('snow', 1), ('a', 1), ('little', 1), ('and', 1), ('that', 1), ('went', 1), ('the', 1), ('to', 1), ('as', 1), ('Mary', 2), ('sure', 1), ('its', 1), ('white', 1), ('had', 1)])
+```
+
+## TCP socket
+
+```
+>>> ss = ssc.socketTextStream("localhost", 9999)
+
+>>> results = ss.flatMap(lambda x: x.split(" ")).map(lambda x: (x, 1)).window(60).reduceByKey(lambda x, y: x + y).repartition(1).glom().map(lambda arr: ("COUNT", list(arr)))
+>>> results.pprint()
+```
+
+To start and add random words to a data server:
+```bash
+$ netcat -lp 9999
 ```
 
 ## References
