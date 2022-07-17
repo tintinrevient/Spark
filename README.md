@@ -2,6 +2,10 @@
 
 ## Overview
 
+<p float="left">
+   <img src="pix/spark_hive.png" width=700 />
+</p>
+
 ### Components
 
 `RDD` (Resilient Distributed Dataset) is the main element of the `Spark API`:
