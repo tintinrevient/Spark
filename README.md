@@ -354,3 +354,6 @@ def updateFunction(newValues, runningCount):
 * https://opendatahub.io/
 * https://community.cloudera.com/t5/Community-Articles/Using-Spark-to-Virtually-Integrate-Hadoop-with-External/ta-p/246013
 * https://community.cloudera.com/t5/Community-Articles/Virtual-Integration-of-Hadoop-with-External-Systems/ta-p/245890
+* https://spark.apache.org/docs/latest/sql-distributed-sql-engine.html
+* https://jaceklaskowski.gitbooks.io/mastering-spark-sql/content/spark-sql-thrift-server.html
+* https://docs.cloudera.com/HDPDocuments/HDP2/HDP-2.6.4/bk_spark-component-guide/content/config-sts.html
