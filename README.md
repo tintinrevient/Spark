@@ -334,6 +334,17 @@ def updateFunction(newValues, runningCount):
 >>> results.pprint()
 ```
 
+## Data federation
+
+* `Predicate pushdown` (i.e. the ability to limit data via filters) serves to both limit data movement and also reduce stress on source systems.
+* `Query rewrite` takes a query against a single "virtual" table and breaks it up into multiple, optimal sub-queries in the language native to each integrated source system.
+* External tables can be `cached` into `local memory` – which reduces continuous network traffic and buffers source systems from direct query.
+
+<p float="left">
+   <img src="pix/data-federation-pattern-1.png" width=400 />
+   <img src="pix/data-federation-pattern-3.png" width=400 />
+</p>
+
 ## References
 * https://spark.apache.org/docs/latest/sql-data-sources-text.html
 * https://spark.apache.org/docs/latest/
