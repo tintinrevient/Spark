@@ -341,3 +341,4 @@ def updateFunction(newValues, runningCount):
 * https://spark.apache.org/docs/latest/streaming-programming-guide.html
 * https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html
 * https://opendatahub.io/
+* https://community.cloudera.com/t5/Community-Articles/Using-Spark-to-Virtually-Integrate-Hadoop-with-External/ta-p/246013
